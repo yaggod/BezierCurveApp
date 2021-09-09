@@ -1,0 +1,39 @@
+﻿<Window x:Class="BezierCurveApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BezierCurveApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="512" Width="768" ResizeMode="NoResize">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">    
+                <MenuItem Header="Настройки"></MenuItem>
+                <MenuItem Header="Очистить" Click="Clear"></MenuItem>
+                <Separator/>
+                <MenuItem Header="Выход" Click="ClickExit"/>
+            </MenuItem>
+        </Menu>
+        <Canvas x:Name="Field" Grid.Column="0" MouseLeftButtonDown="Canvas_Click" Background="AliceBlue" >
+            <Polyline Stroke="Black" x:Name="Line"></Polyline>
+            <Polyline Stroke="Black" x:Name="BezierCurve"></Polyline>
+        </Canvas>
+        <!--Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="512"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+           
+
+            <StackPanel Grid.Column="1">
+                <Label>Количество точек:</Label>
+                <TextBox x:Name="Amount" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
+            </StackPanel>
+        </Grid-->
+    </DockPanel>
+</Window>
