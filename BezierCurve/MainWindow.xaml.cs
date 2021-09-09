@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BezierCurve
+namespace BezierCurveApp
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -33,6 +33,20 @@ namespace BezierCurve
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !Char.IsDigit(e.Text,0);   
+        }
+
+        private void Canvas_Click(object sender, MouseButtonEventArgs e)
+        {
+            Rectangle rect = new Rectangle()
+            {
+                Height = 5,
+                Width = 5,
+                Fill = Brushes.Black,
+            };
+            //rect
+            Field.Children.Add(rect);
+            Canvas.SetLeft(rect, e.GetPosition(Field).X - 2.5);
+            Canvas.SetTop(rect, e.GetPosition(Field).Y - 2.5);
         }
     }
     
