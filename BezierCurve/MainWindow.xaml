@@ -14,26 +14,27 @@
                 <Separator/>
                 <MenuItem Header="Выход" Click="ClickExit"/>
             </MenuItem>
-        </Menu>
+        </Menu>    
         <Canvas x:Name="Field" Grid.Column="0" MouseLeftButtonDown="Canvas_Click" Background="AliceBlue" >
             <Polyline Stroke="Black" x:Name="Line"></Polyline>
             <Polyline Stroke="Black" x:Name="BezierCurve"></Polyline>
         </Canvas>
         <!--Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="512"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="512"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="5*"/>
-                <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-           
-
-            <StackPanel Grid.Column="1">
-                <Label>Количество точек:</Label>
-                <TextBox x:Name="Amount" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
-            </StackPanel>
+               
+        </Canvas>
+        
+        <StackPanel Grid.Column="1">
+            <Label>Количество точек:</Label>
+            <TextBox x:Name="Amount" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
+        </StackPanel>
         </Grid-->
     </DockPanel>
 </Window>

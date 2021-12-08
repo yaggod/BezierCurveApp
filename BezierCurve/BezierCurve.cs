@@ -46,7 +46,7 @@ namespace BezierCurveApp
             return temp[0];
         }
         private void CalculatePath()
-        { 
+        {
             for (int t = 0; t < _dots; t++)
             {
                 ResultPoints[t] = CalculateSinglePoint((float)t / (_dots - 1));
