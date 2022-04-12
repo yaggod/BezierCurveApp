@@ -1,40 +1,77 @@
-﻿<Window x:Class="BezierCurveApp.MainWindow"
+﻿ <Window x:Class="BezierCurveApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BezierCurveApp"
-        mc:Ignorable="d"
+        xmlns:model="clr-namespace:BezierCurveApp.Model"
+        xmlns:converters="clr-namespace:BezierCurveApp.Model.Converters"
         Title="MainWindow" Height="512" Width="768" ResizeMode="NoResize">
+    <Window.DataContext>
+        <local:MainVM/>
+    </Window.DataContext>
+    <Window.Resources>
+        <converters:PointsCollectionConverter x:Key="PointsCollectionConverter"/>
+        <converters:SubstractEightConverter x:Key="SubstractEightConverter"/>
+        <converters:VisibilityConverter x:Key="VisibilityConverter"/>
+        <converters:ArrayToCopyConverter x:Key="ArrayToCopyConverter"/>
+        <Style x:Key="BezierCurveStyle" TargetType="Polyline">
+            <Setter Property="Stroke" Value="DarkRed"/>
+            <Setter Property="StrokeThickness" Value="16"/>
+        </Style>
+        <Style x:Key="PathStyle" TargetType="Polyline">
+            <Setter Property="Stroke" Value="#AA000000"/>
+            <Setter Property="StrokeThickness" Value="2"/>
+        </Style>
+    </Window.Resources>
+    
     <DockPanel>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="File">    
-                <MenuItem Header="Настройки"></MenuItem>
-                <MenuItem Header="Очистить" Click="Clear"></MenuItem>
+        <Menu x:Name=   "Menu" DockPanel.Dock="Top" Height="20" Panel.ZIndex="1">
+            <MenuItem Header="File">
+                <MenuItem Header="Настройки"/>
+                <MenuItem Header="Очистить" Command="{Binding ClearPathCommand}" CommandParameter="{Binding CurvePath}"/>
                 <Separator/>
-                <MenuItem Header="Выход" Click="ClickExit"/>
+                <MenuItem Header="Выход" Command="{Binding ApplicationExitCommand}"/>
             </MenuItem>
-        </Menu>    
-        <Canvas x:Name="Field" Grid.Column="0" MouseLeftButtonDown="Canvas_Click" Background="AliceBlue" >
-            <Polyline Stroke="Black" x:Name="Line"></Polyline>
-            <Polyline Stroke="Black" x:Name="BezierCurve"></Polyline>
+        </Menu>
+        <Canvas x:Name="Field" Grid.Column="0" Background="AliceBlue" Panel.ZIndex="0">
+            <Canvas.InputBindings>
+                <MouseBinding Command="{Binding AddPointCommand}" Gesture="LeftClick">
+                    <MouseBinding.CommandParameter>
+                        <MultiBinding Converter="{StaticResource ArrayToCopyConverter}">
+                            <Binding ElementName="Field"></Binding>
+                            <Binding Path="CurvePath"></Binding>
+                        </MultiBinding>
+                    </MouseBinding.CommandParameter>
+                </MouseBinding>
+
+ 
+            </Canvas.InputBindings>
+            <Polyline x:Name="BezierCurve" Points="{Binding BezierCurvePath, Converter={StaticResource PointsCollectionConverter}}"
+                      Style="{StaticResource BezierCurveStyle}" Canvas.ZIndex="0"/>
+            <Polyline x:Name="Line" Points="{Binding CurvePath, Converter={StaticResource PointsCollectionConverter}}"
+                      Style="{StaticResource PathStyle}" Canvas.ZIndex="2"
+                       Visibility="{model:SettingsBinding IsPathVisible, Converter={StaticResource VisibilityConverter}}"/>
+            <ItemsControl x:Name="Squares" ItemsSource="{Binding CurvePath}" Canvas.ZIndex="1"
+                           Visibility="{model:SettingsBinding IsPathVisible, Converter={StaticResource VisibilityConverter}}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Rectangle Height="16" Width="16" Fill="#CF0F0F0F"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="Canvas.Left" Value="{Binding X, Converter={StaticResource SubstractEightConverter}}"/>
+                        <Setter Property="Canvas.Top" Value="{Binding Y, Converter={StaticResource SubstractEightConverter}}"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+
+            </ItemsControl>
         </Canvas>
-        <!--Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="512"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
-               
-        </Canvas>
-        
-        <StackPanel Grid.Column="1">
-            <Label>Количество точек:</Label>
-            <TextBox x:Name="Amount" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
-        </StackPanel>
-        </Grid-->
     </DockPanel>
 </Window>
