@@ -1,23 +1,53 @@
-﻿<Window x:Class="BezierCurve.SettingsWindow"
+﻿<Window x:Class="BezierCurveApp.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BezierCurve"
+        xmlns:local="clr-namespace:BezierCurveApp"
         xmlns:properties="clr-namespace:BezierCurveApp.Properties"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:model="clr-namespace:BezierCurveApp.Model"
         mc:Ignorable="d"
         
-        Title="SettingsWindow" Height="450" Width="800">
+        Title="Настройки" Height="265" Width="480" IsEnabled="True" ResizeMode="NoResize">
     <Window.Resources>
 
     </Window.Resources>
-    <Grid>
-        <!--Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions-->
-        <ListBox>
-            
-        </ListBox>
-    </Grid>
+    <Border Background="White" BorderBrush="AliceBlue" BorderThickness="8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="110"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0">Цвет кривой</Label>
+            <xctk:ColorPicker  Grid.Row="0" Grid.Column="1" DisplayColorAndName="True" AvailableColorsSortingMode="HueSaturationBrightness" 
+                               SelectedColor="{model:SettingsBinding BezierCurveColor, Mode=TwoWay}"></xctk:ColorPicker>
+
+            <Label Grid.Row="1" Grid.Column="0">Цвет фона</Label>
+            <xctk:ColorPicker  Grid.Row="1" Grid.Column="1" DisplayColorAndName="True" AvailableColorsSortingMode="HueSaturationBrightness" 
+                                SelectedColor="{model:SettingsBinding BackgroundColor, Mode=TwoWay}"></xctk:ColorPicker>
+
+
+            <Label Grid.Row="2" Grid.Column="0">Цвет пути</Label>
+            <xctk:ColorPicker  Grid.Row="2" Grid.Column="1" DisplayColorAndName="True" AvailableColorsSortingMode="HueSaturationBrightness" 
+                               SelectedColor="{model:SettingsBinding PathColor, Mode=TwoWay}"></xctk:ColorPicker>
+
+            <Label Grid.Row="3" Grid.Column="0">Толщина кривой</Label>
+            <Slider Grid.Row="3" Grid.Column="1" Minimum="1" Maximum="30" Value="{model:SettingsBinding CurveThickness, Mode=TwoWay}"/>
+
+            <Label Grid.Row="4" Grid.Column="0">Отображение пути</Label>
+            <CheckBox  Grid.Row="4" Grid.Column="1" Margin="48,9,48,8" IsChecked="{model:SettingsBinding IsPathVisible}"/>
+
+        </Grid>
+    </Border>
 </Window>

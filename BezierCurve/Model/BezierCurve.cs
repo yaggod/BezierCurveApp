@@ -21,7 +21,7 @@ namespace BezierCurveApp.Model
                 
                 if (value.Count() == 0)
                 {
-                    _resultPoints = new Point[ResultPoints.Length];
+                    _resultPoints = new Point[0];
                     return;
                 }
                 _points = value;

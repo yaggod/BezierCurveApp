@@ -25,13 +25,61 @@ namespace BezierCurveApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool IsPathVisible {
             get {
                 return ((bool)(this["IsPathVisible"]));
             }
             set {
                 this["IsPathVisible"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF8A2BE2")]
+        public global::System.Windows.Media.Color BezierCurveColor {
+            get {
+                return ((global::System.Windows.Media.Color)(this["BezierCurveColor"]));
+            }
+            set {
+                this["BezierCurveColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF696969")]
+        public global::System.Windows.Media.Color PathColor {
+            get {
+                return ((global::System.Windows.Media.Color)(this["PathColor"]));
+            }
+            set {
+                this["PathColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FFADD8E6")]
+        public global::System.Windows.Media.Color BackgroundColor {
+            get {
+                return ((global::System.Windows.Media.Color)(this["BackgroundColor"]));
+            }
+            set {
+                this["BackgroundColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("12")]
+        public int CurveThickness {
+            get {
+                return ((int)(this["CurveThickness"]));
+            }
+            set {
+                this["CurveThickness"] = value;
             }
         }
     }

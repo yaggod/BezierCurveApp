@@ -18,16 +18,8 @@ namespace BezierCurveApp
         #region Fields
 
         private int _pointsCount = 250;
-        private ObservableCollection<Point> _curvePath = new ObservableCollection<Point>()
-        {
-            
-            new Point(145, 234),   
-            new Point(345, 234),   
-            new Point(245, 404),   
-            new Point(108, 14)  
-           
+        private ObservableCollection<Point> _curvePath = new ObservableCollection<Point>();
 
-        };
         public event PropertyChangedEventHandler PropertyChanged;
 
 
@@ -39,7 +31,7 @@ namespace BezierCurveApp
         public int PointsCount
         {
             get => _pointsCount;
-            set 
+            set
             {
                 _pointsCount = value;
                 OnPropertyChanged("BezierCurvePath");
@@ -50,28 +42,41 @@ namespace BezierCurveApp
         {
             get => _curvePath;
         }
-       
+
         public Point[] BezierCurvePath
         {
             get => CurveHelper.BezierPathFromNormalPathAndCount(CurvePath, PointsCount);
-     
         }
 
-        public ICommand ClearPathCommand
-        {
-            get;
-        } = new ClearPathCommand();
 
         public ICommand ApplicationExitCommand
         {
             get;
         } = new ApplicationExitCommand();
 
+        public ICommand ClearPathCommand
+        {
+            get;
+            private set;
+        }
+
         public ICommand AddPointCommand
         {
             get;
-        } = new AddPointCommand();
+            private set;
+        }
 
+        public ICommand RemovePointCommand
+        {
+            get;
+            private set;
+        }
+
+
+        public ICommand OpenSettingsCommand
+        {
+            get;
+        } = new OpenSettingsCommand();
 
         #endregion
 
@@ -81,17 +86,14 @@ namespace BezierCurveApp
             CurvePath.CollectionChanged += (s, e) => OnPropertyChanged("BezierCurvePath");
             CurvePath.CollectionChanged += (s, e) => OnPropertyChanged("CurvePath");
 
-
+            AddPointCommand = new AddPointCommand(CurvePath);
+            RemovePointCommand = new RemovePointCommand(CurvePath);
+            ClearPathCommand = new ClearPathCommand(CurvePath);
         }
         private  void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            
         }
 
-        public void AddPointOn(Point position)
-        {
-            CurvePath.Add(position);
-        }
     }
 }

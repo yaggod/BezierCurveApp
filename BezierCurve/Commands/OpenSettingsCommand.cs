@@ -9,14 +9,9 @@ using System.Windows.Input;
 
 namespace BezierCurveApp.Commands
 {
-    public class ClearPathCommand : ICommand
+    class OpenSettingsCommand : ICommand
     {
-        private ObservableCollection<Point> _pointsCollection;
-
-        public ClearPathCommand(ObservableCollection<Point> PointsCollection)
-        {
-            _pointsCollection = PointsCollection;
-        }
+        private SettingsWindow _settingsWindow = new SettingsWindow();
 
         public event EventHandler CanExecuteChanged
         {
@@ -33,12 +28,12 @@ namespace BezierCurveApp.Commands
 
         public bool CanExecute(object parameter)
         {
-            return _pointsCollection.Count > 0;
+            return _settingsWindow.Visibility != Visibility.Visible;
         }
 
         public void Execute(object parameter)
         {
-            _pointsCollection.Clear();
+            _settingsWindow.Show();
         }
     }
 }

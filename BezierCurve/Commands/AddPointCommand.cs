@@ -12,6 +12,13 @@ namespace BezierCurveApp.Commands
 {
     public class AddPointCommand : ICommand
     {
+        private ObservableCollection<Point> _pointsCollection;
+
+        public AddPointCommand(ObservableCollection<Point> PointsCollection)
+        {
+            _pointsCollection = PointsCollection;
+        }
+
         public event EventHandler CanExecuteChanged
         {
             add
@@ -32,12 +39,11 @@ namespace BezierCurveApp.Commands
 
         public void Execute(object parameter)
         {
-            object[] parameters = parameter as object[];
-            FrameworkElement target = parameters[0] as FrameworkElement;
-            ObservableCollection<Point> pointsCollection = parameters[1] as ObservableCollection<Point>;
-
+            FrameworkElement target = parameter as FrameworkElement;
             Point position = Mouse.GetPosition(target);
-            pointsCollection.Add(position);
+            
+            _pointsCollection.Add(position);
+
         }
     }
 }

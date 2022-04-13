@@ -5,20 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace BezierCurveApp.Model.Converters
 {
-    [ValueConversion(typeof(double), typeof(double))]
-    public class SubstractEightConverter : IValueConverter
+    [ValueConversion(typeof(Color), typeof(SolidColorBrush))]
+    public class ColorToBrushConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((double)value) - 8;
+            return new SolidColorBrush((Color)value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((double)value) + 8;
+            throw new NotImplementedException();
         }
     }
 }

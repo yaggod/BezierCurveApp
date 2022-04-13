@@ -5,15 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace BezierCurveApp.Commands
 {
-    public class ClearPathCommand : ICommand
+    public class RemovePointCommand : ICommand
     {
         private ObservableCollection<Point> _pointsCollection;
 
-        public ClearPathCommand(ObservableCollection<Point> PointsCollection)
+        public RemovePointCommand(ObservableCollection<Point> PointsCollection)
         {
             _pointsCollection = PointsCollection;
         }
@@ -33,12 +34,13 @@ namespace BezierCurveApp.Commands
 
         public bool CanExecute(object parameter)
         {
-            return _pointsCollection.Count > 0;
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            _pointsCollection.Clear();
+            Point pointToRemove= (Point)parameter;
+            _pointsCollection.Remove(pointToRemove);
         }
     }
 }

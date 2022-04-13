@@ -1,9 +1,21 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BezierCurve.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BezierCurveApp.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="IsPathVisible" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="BezierCurveColor" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FF8A2BE2</Value>
+    </Setting>
+    <Setting Name="PathColor" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FF696969</Value>
+    </Setting>
+    <Setting Name="BackgroundColor" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FFADD8E6</Value>
+    </Setting>
+    <Setting Name="CurveThickness" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">12</Value>
     </Setting>
   </Settings>
 </SettingsFile>

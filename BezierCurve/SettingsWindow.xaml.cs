@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace BezierCurve
+namespace BezierCurveApp
 {
     /// <summary>
     /// Логика взаимодействия для SettingsWindow.xaml
@@ -23,5 +23,14 @@ namespace BezierCurve
         {
             InitializeComponent();
         }
+
+        
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            e.Cancel = true;
+            Hide();
+        }
+       
     }
 }

@@ -4,24 +4,21 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Data;
 
 namespace BezierCurveApp.Model.Converters
 {
-    [ValueConversion(typeof(bool), typeof(Visibility))]
-    public class VisibilityConverter : IValueConverter
+    [ValueConversion(typeof(double), typeof(double))]
+    public class SubstractSixConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            bool isVisible = (bool)value;
-            return isVisible ? Visibility.Visible : Visibility.Hidden;
+            return ((double)value) - 6;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Visibility visibility = (Visibility)value;
-            return visibility != Visibility.Hidden;
+            return ((double)value) + 6;
         }
     }
 }

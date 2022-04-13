@@ -8,6 +8,7 @@ using System.Windows.Data;
 
 namespace BezierCurveApp.Model.Converters
 {
+    [ValueConversion(typeof(object[]), typeof(object[]))]
     public class ArrayToCopyConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
